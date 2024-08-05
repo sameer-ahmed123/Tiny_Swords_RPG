@@ -511,10 +511,8 @@ script = ExtResource("1_reces")
 position = Vector2(2, -20)
 scale = Vector2(0.484375, 0.494792)
 sprite_frames = SubResource("SpriteFrames_3yvj4")
-animation = &"death"
+animation = &"idle"
 autoplay = "idle"
-frame = 13
-frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(2, -21)
