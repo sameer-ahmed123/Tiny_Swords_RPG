@@ -1,7 +1,7 @@
 # /////////////////////////////////////////////////////////////////////////////////////////////////
 extends CharacterBody2D
 
-enum state {NORMAL, HITTING}
+enum state {NORMAL, HITTING, DEATH}
 
 @onready var player_sprite = $AnimatedSprite2D
 @onready var hit_area = $hit_area/CollisionShape2D
@@ -30,6 +30,9 @@ func _ready():
 	#attack component signals
 	attack_component.connect("attacked", Callable(self, "_on_attacked"))
 
+	#death animation finished playing
+	player_sprite.connect("animation_finished", Callable(self, "_on_animation_finished"))
+
 
 func _process(delta):
 	match currentState:
@@ -37,6 +40,8 @@ func _process(delta):
 			process_normal(delta)
 		state.HITTING:
 			process_hitting(delta)
+		state.DEATH:
+			process_death(delta)
 	isStateNew = false
 
 func changeState(newState):
@@ -52,8 +57,8 @@ func process_normal(delta):
 	# print("in state NORMAL")
 
 	if Input.is_action_just_pressed("kys"):
-		print("kys pressed")
-		health_component.take_damage(10)
+		# print("kys pressed")
+		health_component.take_damage(50)
 		
 
 	if Input.is_action_just_pressed("swing_sword"):
@@ -92,6 +97,13 @@ func process_hitting(delta):
 
 	update_animation()
 
+func process_death(delta):
+	if isStateNew:
+		player_sprite.play("death")
+		
+		print("Playing death animation")
+
+
 func update_animation():
 	var direction = get_movement_vector()
 	if currentState == state.NORMAL:
@@ -110,17 +122,18 @@ func get_movement_vector():
 	return move_vector
 
 
+# ///////////////////////////////////   SIGNAL FUNCTIONS   /////////////////////////////////
 #Health Component Signal Funcs
 func _on_death() -> void:
 	print("the player has died of old age !")
-	queue_free()
+	# queue_free()
+	call_deferred("changeState", state.DEATH)
 
 func _on_health_changed(current_health) -> void:
 	print("curent_helth is ", current_health)
 
 #Attack Component Signal funcs
 func _on_attacked(target):
-
 	# print("attacked an enemy")
 	# print("Attacked target: %s" % target.name)
 	attack_component.Attack(target)
@@ -131,3 +144,9 @@ func _on_hit_area_body_entered(_body: Node2D):
 	if _body.has_node("HealthComponent"):
 		var target_health_component = _body.get_node("HealthComponent")
 		attack_component.Attack(target_health_component)
+
+
+func _on_animation_finished():
+	print("an animation finished ")
+	if player_sprite.animation == "death":
+		queue_free()
