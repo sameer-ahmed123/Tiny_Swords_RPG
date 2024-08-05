@@ -533,6 +533,7 @@ disabled = true
 
 [node name="AttackComponent" parent="." instance=ExtResource("4_tae8b")]
 script = ExtResource("5_5y55s")
+base_damage = 20
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="body_entered" from="hit_area" to="." method="_on_hit_area_body_entered"]

@@ -9,10 +9,6 @@ enum state {NORMAL, HITTING, DEATH}
 #health and attack component
 @onready var health_component = $HealthComponent # initalizes the healt of entity with export variables
 @onready var attack_component = $AttackComponent
-@onready var enemy_in_attack_area = 1
-
-#check if enemy is in attack area then impliment the attack logic by passing the enemy to the
-# attack(target) method of the attack component
 
 var acel = 300
 var is_swinging = false
@@ -132,20 +128,19 @@ func _on_death() -> void:
 func _on_health_changed(current_health) -> void:
 	print("curent_helth is ", current_health)
 
+
+# OPTIONAL FUNC
 #Attack Component Signal funcs
+# tells what target was attacked
 func _on_attacked(target):
-	# print("attacked an enemy")
-	# print("Attacked target: %s" % target.name)
-	attack_component.Attack(target)
+	print("Attacked target: %s" % target.name)
+	
 
+#check if enemy is in attack area then impliment the attack logic by passing the enemy to the
+# attack(target) method of the attack component
 func _on_hit_area_body_entered(_body: Node2D):
-	# _on_attacked(_body)
-	# print("enemy hit")
-	if _body.has_node("HealthComponent"):
-		var target_health_component = _body.get_node("HealthComponent")
-		attack_component.Attack(target_health_component)
-
-
+	attack_component.Attack(_body)
+	
 func _on_animation_finished():
 	print("an animation finished ")
 	if player_sprite.animation == "death":

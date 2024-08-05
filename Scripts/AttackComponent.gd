@@ -16,13 +16,16 @@ func _ready():
 
 func Attack(target) -> void:
 	if can_attack:
-		
 		if is_target_inrange(target):
-			apply_damage(target)
-			can_attack = false
-			emit_signal("attacked", target)
-			await get_tree().create_timer(attack_cooldown).timeout
-			can_attack = true
+			if target.has_node("HealthComponent"):
+				# this is the health component that is damaged of the target
+				var target_health_component = target.get_node("HealthComponent")
+				await get_tree().create_timer(0.2).timeout
+				apply_damage(target_health_component)
+				can_attack = false
+				emit_signal("attacked", target) # this is the name of the target that was attacked
+				await get_tree().create_timer(attack_cooldown).timeout
+				can_attack = true
 
 
 func apply_damage(target) -> void:
