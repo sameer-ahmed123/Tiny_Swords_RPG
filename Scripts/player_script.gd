@@ -1,7 +1,7 @@
 # /////////////////////////////////////////////////////////////////////////////////////////////////
 extends CharacterBody2D
 
-enum state {NORMAL, HITTING, DEATH}
+enum state {NORMAL, HITTING, DEATH, MOVEING_STRIKE}
 
 @onready var player_sprite = $AnimatedSprite2D
 @onready var hit_area = $hit_area/CollisionShape2D
@@ -38,6 +38,8 @@ func _process(delta):
 			process_hitting(delta)
 		state.DEATH:
 			process_death(delta)
+		state.MOVEING_STRIKE:
+			process_moving_strike(delta)
 	isStateNew = false
 
 func changeState(newState):
@@ -59,6 +61,10 @@ func process_normal(delta):
 
 	if Input.is_action_just_pressed("swing_sword"):
 		call_deferred("changeState", state.HITTING)
+
+	# if direction.x and Input.is_action_just_pressed("swing_sword"):
+	# 	call_deferred("changeState", state.HITTING_UP_RIGHT)
+		# figure out direction of the movement and play the animation accordingly
 	
 		#flipping directionally
 	if direction.x > 0:
@@ -93,6 +99,15 @@ func process_hitting(delta):
 
 	update_animation()
 
+
+func process_moving_strike(delta):
+	# 1 get the direction of the current movement 
+	# 2 move the hitbox in that directed area
+	# 3 player directed hiting animation
+	# 4 return to previous state
+	pass
+
+	
 func process_death(delta):
 	if isStateNew:
 		player_sprite.play("death")

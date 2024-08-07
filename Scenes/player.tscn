@@ -506,6 +506,7 @@ size = Vector2(32, 37.25)
 [node name="player" type="CharacterBody2D"]
 motion_mode = 1
 script = ExtResource("1_reces")
+swing_duration = null
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(2, -20)
