@@ -23,8 +23,11 @@ func _ready():
 func _process(delta):
 	move_and_slide()
 
-func update_animation():
-	animation.play(state + "_" + direction_name)
+func update_animation(animation_name):
+	animation.play(animation_name)
+
+	# func update_animation():
+		# animation.play(state +"_"+ direction_name)
 
 func update_direction(target_position: Vector2):
 	direction = global_position.direction_to(target_position)

@@ -20,6 +20,16 @@ func _ready() -> void:
 	collisionShape.queue_free()
 	original_position = npc.global_position
 
+func _process(delta):
+	if Engine.is_editor_hint():
+		return
+	if abs(global_position.distance_to(original_position)) > wander_range * 32:
+		npc.velocity *= -1
+		npc.direction *= -1
+		npc.update_direction(global_position + npc.direction)
+		npc.update_animation("walk_side")
+
+
 func start() -> void:
 	if npc.do_behavior == false:
 		return
@@ -27,7 +37,7 @@ func start() -> void:
 	#idle phase
 	npc.state = "idle"
 	npc.velocity = Vector2.ZERO
-	npc.update_animation()
+	npc.update_animation("idle_down")
 	await get_tree().create_timer(randf() * idle_duration + idle_duration * 0.5).timeout
 	
 	#WALK Phase
@@ -36,7 +46,7 @@ func start() -> void:
 	npc.direction = _dir
 	npc.velocity = wander_speed * _dir
 	npc.update_direction(global_position + _dir)
-	npc.update_animation()
+	npc.update_animation("walk_side")
 	await get_tree().create_timer(randf() * wander_duration + wander_duration * 0.5).timeout
 
 	#REPEAT
