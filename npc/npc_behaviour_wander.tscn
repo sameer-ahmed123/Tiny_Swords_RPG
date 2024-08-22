@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://dowbygpdvb0ko"]
+
+[ext_resource type="Script" path="res://npc/scripts/npc_wander.gd" id="1_56vjc"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_avuxh"]
+radius = 160.0
+
+[node name="NPC_WANDER" type="Node2D"]
+script = ExtResource("1_56vjc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_avuxh")
+debug_color = Color(0.604799, 0.537463, 0.184259, 0.42)

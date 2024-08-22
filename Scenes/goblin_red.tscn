@@ -262,9 +262,9 @@ script = ExtResource("1_15guu")
 position = Vector2(1, -35)
 scale = Vector2(0.484, 0.484)
 sprite_frames = SubResource("SpriteFrames_imfmk")
-animation = &"idle"
+animation = &"hit"
 autoplay = "idle"
-frame_progress = 0.86326
+frame_progress = 0.111964
 
 [node name="goblin_hurt_box" type="CollisionShape2D" parent="."]
 position = Vector2(3, -31)

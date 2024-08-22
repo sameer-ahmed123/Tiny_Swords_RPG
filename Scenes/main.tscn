@@ -1,10 +1,14 @@
-[gd_scene load_steps=8 format=3 uid="uid://cwgmvhkrxgsnm"]
+[gd_scene load_steps=12 format=3 uid="uid://cwgmvhkrxgsnm"]
 
 [ext_resource type="Texture2D" uid="uid://bcol1fbblk5er" path="res://Assets/Terrain/Ground/Tilemap_Flat.png" id="1_0gyl1"]
 [ext_resource type="PackedScene" uid="uid://cuxgjejhg2y5d" path="res://Scenes/player.tscn" id="2_pmrhs"]
 [ext_resource type="PackedScene" uid="uid://dj0tdqmre3avh" path="res://Scenes/goblin_red.tscn" id="3_bqcrv"]
 [ext_resource type="PackedScene" uid="uid://dlmdmrby2uakf" path="res://Scenes/Tree.tscn" id="4_usdpt"]
 [ext_resource type="PackedScene" uid="uid://cttxtmvpn6vxi" path="res://Scenes/tnt_goblin_red.tscn" id="5_qf78f"]
+[ext_resource type="PackedScene" uid="uid://ctgv1xlt1c2bg" path="res://Scenes/Buildings_knights/knight_building.tscn" id="6_ck04f"]
+[ext_resource type="PackedScene" uid="uid://bucsv4puv1ksv" path="res://npc/npc.tscn" id="7_y5pd8"]
+[ext_resource type="Resource" uid="uid://dske5ggx5co5p" path="res://npc/00npck/npc_resource_2.tres" id="8_8qkvs"]
+[ext_resource type="Resource" uid="uid://cjocx1g8n1d31" path="res://npc/00npck/npc_resource_1.tres" id="8_dekx6"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2uk7b"]
 texture = ExtResource("1_0gyl1")
@@ -202,7 +206,6 @@ position = Vector2(208, -36)
 
 [node name="player" parent="." instance=ExtResource("2_pmrhs")]
 position = Vector2(-6, -10)
-swing_duration = null
 
 [node name="Camera2D" type="Camera2D" parent="player"]
 
@@ -229,3 +232,14 @@ position = Vector2(44, -67)
 
 [node name="TNT_goblin_red2" parent="." instance=ExtResource("5_qf78f")]
 position = Vector2(-79, 28)
+
+[node name="knight_building" parent="." instance=ExtResource("6_ck04f")]
+position = Vector2(-184, -129)
+
+[node name="Npc" parent="." instance=ExtResource("7_y5pd8")]
+position = Vector2(-281, -78)
+npc_resource = ExtResource("8_8qkvs")
+
+[node name="Npc2" parent="." instance=ExtResource("7_y5pd8")]
+position = Vector2(-172, -53)
+npc_resource = ExtResource("8_dekx6")

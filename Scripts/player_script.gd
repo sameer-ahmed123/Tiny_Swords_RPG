@@ -10,11 +10,12 @@ enum state {NORMAL, HITTING, DEATH, MOVEING_STRIKE}
 @onready var health_component = $HealthComponent # initalizes the healt of entity with export variables
 @onready var attack_component = $AttackComponent
 
+
+var isStateNew = true
 var acel = 300
 var is_swinging = false
 var move_speed = 450.0
 var currentState = state.NORMAL
-var isStateNew = true
 var swing_timer: float = 0.0
 @export var swing_duration: float = 0.7 # Duration of the swing animation in seconds
 
@@ -46,7 +47,7 @@ func changeState(newState):
 	currentState = newState
 	isStateNew = true
 
-func process_normal(delta):
+func process_normal(_delta):
 	var direction = get_movement_vector()
 	velocity.x = move_toward(velocity.x, move_speed * direction.x, acel)
 	velocity.y = move_toward(velocity.y, move_speed * direction.y, acel)
@@ -100,7 +101,7 @@ func process_hitting(delta):
 	update_animation()
 
 
-func process_moving_strike(delta):
+func process_moving_strike(_delta):
 	# 1 get the direction of the current movement 
 	# 2 move the hitbox in that directed area
 	# 3 player directed hiting animation
@@ -108,10 +109,9 @@ func process_moving_strike(delta):
 	pass
 
 	
-func process_death(delta):
+func process_death(_delta):
 	if isStateNew:
 		player_sprite.play("death")
-		
 		print("Playing death animation")
 
 

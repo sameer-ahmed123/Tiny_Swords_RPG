@@ -52,6 +52,11 @@ animations = [{
 "loop": true,
 "name": &"idle",
 "speed": 12.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"new_animation",
+"speed": 5.0
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7mhwp"]
@@ -65,11 +70,11 @@ script = ExtResource("1_0587f")
 position = Vector2(1, -20)
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_fq3vh")
-animation = &"idle"
+animation = &"new_animation"
 autoplay = "idle"
-frame_progress = 0.666359
 
 [node name="TNT_hurt_box" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(0, -17)
 shape = SubResource("CircleShape2D_7mhwp")
 

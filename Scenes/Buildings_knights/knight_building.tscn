@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://ctgv1xlt1c2bg"]
+
+[ext_resource type="Texture2D" uid="uid://dtbeq116ns45g" path="res://Assets/Factions/Knights/Buildings/House/House_Red.png" id="1_yrd4o"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m8nd5"]
+size = Vector2(94, 106)
+
+[node name="knight_building" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(2, -75)
+texture = ExtResource("1_yrd4o")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2, -56)
+shape = SubResource("RectangleShape2D_m8nd5")
