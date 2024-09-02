@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="NPC_RESOURCE" load_steps=3 format=3 uid="uid://dske5ggx5co5p"]
+
+[ext_resource type="Script" path="res://npc/scripts/npc_resource.gd" id="1_ae1yg"]
+[ext_resource type="Texture2D" uid="uid://c8mllxh0q5lo3" path="res://Assets/Factions/Knights/Troops/Pawn/Purple/Pawn_Purple.png" id="2_sk7oe"]
+
+[resource]
+script = ExtResource("1_ae1yg")
+npc_name = "resource 2"
+sprite = ExtResource("2_sk7oe")

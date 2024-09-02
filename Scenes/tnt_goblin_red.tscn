@@ -1,0 +1,83 @@
+[gd_scene load_steps=12 format=3 uid="uid://cttxtmvpn6vxi"]
+
+[ext_resource type="Script" path="res://Scripts/TNT_goblin_red.gd" id="1_0587f"]
+[ext_resource type="Texture2D" uid="uid://3tls6xltm2av" path="res://Assets/Factions/Goblins/Troops/TNT/Red/TNT_Red.png" id="2_60n1u"]
+[ext_resource type="PackedScene" uid="uid://df5tp7osjwpfe" path="res://Scenes/health_component.tscn" id="3_wtuxt"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ac3op"]
+atlas = ExtResource("2_60n1u")
+region = Rect2(0, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c67gt"]
+atlas = ExtResource("2_60n1u")
+region = Rect2(192, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cs4ne"]
+atlas = ExtResource("2_60n1u")
+region = Rect2(384, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_do0um"]
+atlas = ExtResource("2_60n1u")
+region = Rect2(576, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gwho3"]
+atlas = ExtResource("2_60n1u")
+region = Rect2(768, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kr8a0"]
+atlas = ExtResource("2_60n1u")
+region = Rect2(960, 0, 192, 192)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fq3vh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ac3op")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c67gt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cs4ne")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_do0um")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gwho3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kr8a0")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 12.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"new_animation",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7mhwp"]
+radius = 19.0263
+
+[node name="TNT_goblin_red" type="CharacterBody2D"]
+collision_layer = 2147483649
+script = ExtResource("1_0587f")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(1, -20)
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_fq3vh")
+animation = &"new_animation"
+autoplay = "idle"
+
+[node name="TNT_hurt_box" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(0, -17)
+shape = SubResource("CircleShape2D_7mhwp")
+
+[node name="HealthComponent" parent="." instance=ExtResource("3_wtuxt")]
+max_health = 20
+current_health = 20
